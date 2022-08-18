@@ -1,22 +1,10 @@
 //use query selector to target relevant elements
 const container = document.querySelector('.container');
 const button = document.querySelector('button');
-// let alreadyRun = false;
 
 //declare function to generate squares with necessary class and event listiner
 function createSquares(num = 16) {
     console.log(`num: ${num}.`);
-    //delete preexisting boxes
-    // let firstChild = console.dir(container.firstElementChild);
-    // if (firstChild) {
-    //     container.removeChild(firstChild);        
-    //     return createSquares(num);
-    // }
-
-    // if (alreadyRun) {
-    //     document.querySelectorAll('.box');
-    //     box.forEach((box) => container.removeChild(box));
-    // }
 
     //update the .container class to container num columns and num rows
     let repeater = `repeat(${num}, 1fr)`;
@@ -32,7 +20,6 @@ function createSquares(num = 16) {
         });
         container.appendChild(newBox);
     }
-    alreadyRun = true;
     return;
 }
 
