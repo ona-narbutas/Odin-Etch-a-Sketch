@@ -1,24 +1,51 @@
-//use query selector to target the conttainer element
+//use query selector to target relevant elements
 const container = document.querySelector('.container');
+const button = document.querySelector('button');
+// let alreadyRun = false;
 
-//create a function called createSquares
-    //input: num - how many columns/rows, the square root of total number of squares
-function createSquares(num) {
+//declare function to generate squares with necessary class and event listiner
+function createSquares(num = 16) {
+    console.log(`num: ${num}.`);
+    //delete preexisting boxes
+    // let firstChild = console.dir(container.firstElementChild);
+    // if (firstChild) {
+    //     container.removeChild(firstChild);        
+    //     return createSquares(num);
+    // }
 
-    //create a for loop to run num times
+    // if (alreadyRun) {
+    //     document.querySelectorAll('.box');
+    //     box.forEach((box) => container.removeChild(box));
+    // }
+
+    //update the .container class to container num columns and num rows
+    let repeater = `repeat(${num}, 1fr)`;
+    container.style.gridTemplateColumns = repeater;
+    container.style.gridTemplateRows = repeater;
+
+    //create new boxes
     for (i = 0; i < num ** 2; i++) {
-        //on each iteration, create a box
         let newBox = document.createElement('div');
-        //assign it the "box" class
         newBox.classList.add('box');
-        //add an event listener to change color when moused over
         newBox.addEventListener('mouseover', () => {
             newBox.style.backgroundColor = 'gray';
         });
-        //append it to container
         container.appendChild(newBox);
     }
+    alreadyRun = true;
+    return;
 }
 
+
 //run createSquares with 16 as its argument to create a 16x16 grid
-createSquares(16);
+createSquares();
+
+//add event listener to button that calles createSquares with user
+//input as its argument
+button.addEventListener('click', () => {
+    let input = document.getElementById('user-response').value;
+    let boxes = document.querySelectorAll('.box');
+    boxes.forEach((box) => container.removeChild(box));
+    createSquares(input);
+    console.log(input)
+});
